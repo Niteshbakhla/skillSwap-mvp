@@ -57,3 +57,15 @@ export const getProfile = asyncHandler(async (req, res) => {
 
             res.status(200).json({ user });
 });
+
+
+export const findMatches = asyncHandler(async (req, res) => {
+            const user = await User.findById(req.user.id);
+            const matches = await User.find({
+                        skillsOffer: { $in: user.skillsWant },
+                        skillsWant: { $in: user.skillsOffer },
+                        _id: { $ne: user._id }
+            }).select('name skillsOffer skillsWant avatarUrl');
+
+            res.status(200).json({ matches });
+});
