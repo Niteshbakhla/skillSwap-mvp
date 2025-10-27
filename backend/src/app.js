@@ -4,11 +4,17 @@ import routes from "./routes/index.js"
 import GlobalError from "./middlewares/globalError.js";
 import morgan from 'morgan';
 import config from "./config/config.js";
+import cors from "cors"
+
 
 const app = express();
 
 app.use(express.json());
 app.use(cookieParser());
+app.use(cors({
+            origin: "http://localhost:5173",
+            credentials: true
+}))
 
 // 4️⃣ Morgan logging (only in development)
 if (config.NODE_ENV === 'development') {

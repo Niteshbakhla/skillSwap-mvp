@@ -34,7 +34,7 @@ export const signup = asyncHandler(async (req, res) => {
 // Login
 export const login = asyncHandler(async (req, res) => {
             const { email, password } = req.body;
-
+          
             const user = await User.findOne({ email });
             if (!user) throw new CustomError('Invalid email or password', 401);
 

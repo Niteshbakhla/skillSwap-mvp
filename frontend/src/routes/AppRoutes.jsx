@@ -1,7 +1,8 @@
-import React, { Suspense, lazy } from "react";
+import { Suspense, lazy } from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 import { AuthLayout } from "../layouts/AuthLayout";
 import { MainLayout } from "../layouts/MainLayout";
+import Home from "../pages/Home";
 
 // Lazy load pages for performance
 const Signup = lazy(() => import("../pages/Signup"));
@@ -21,6 +22,7 @@ export const AppRoutes = () => {
 
                                                 {/* Protected / Main App Routes */}
                                                 <Route element={<MainLayout />}>
+                                                            <Route path="/" element={<Home />} />
                                                             <Route path="/dashboard" element={<Dashboard />} />
                                                             <Route path="/profile" element={<Profile />} />
                                                             <Route path="/" element={<Navigate to="/dashboard" replace />} />
